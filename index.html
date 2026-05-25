@@ -82,7 +82,7 @@
     .hero { padding: 4rem 0 2.5rem; }
     .hero-grid { display: grid; grid-template-columns: 1fr; gap: 1.4rem; }
 
-    .hero-copy, .card, .project-card, .contact-card {
+    .hero-copy, .card, .project-card, .contact-card, .bounty-card {
       background: linear-gradient(180deg, rgba(18,18,18,0.96), rgba(10,10,10,0.96));
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -113,7 +113,7 @@
     .hero-lead { max-width: 60ch; color: var(--text-soft); line-height: 1.85; font-size: 1.03rem; margin-bottom: 1.8rem; }
     .hero-lead strong { color: var(--text); }
 
-    .hero-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem; margin-bottom: 1.8rem; }
+    .hero-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.9rem; margin-bottom: 1.8rem; }
 
     .stat { padding: 1rem; border-radius: var(--radius-sm); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
     .stat strong { display: block; font-family: var(--display); font-size: 1.28rem; margin-bottom: 0.25rem; }
@@ -144,12 +144,12 @@
     .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .skills-wrap, .contact-grid { grid-template-columns: 1.05fr 0.95fr; }
 
-    .card, .project-card, .contact-card { padding: 1.6rem; }
+    .card, .project-card, .contact-card, .bounty-card { padding: 1.6rem; }
 
     .card-tag { display: inline-flex; margin-bottom: 0.9rem; color: var(--brand-sub); font-size: 0.74rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; }
 
-    .card h3, .project-card h3, .contact-card h3 { font-family: var(--display); font-size: 1.28rem; margin-bottom: 0.7rem; }
-    .card p, .project-card p, .contact-card p { color: var(--text-soft); line-height: 1.78; }
+    .card h3, .project-card h3, .contact-card h3, .bounty-card h3 { font-family: var(--display); font-size: 1.28rem; margin-bottom: 0.7rem; }
+    .card p, .project-card p, .contact-card p, .bounty-card p { color: var(--text-soft); line-height: 1.78; }
 
     .project-card { transition: transform 0.2s ease, border-color 0.2s ease; }
     .project-card:hover { transform: translateY(-4px); border-color: rgba(137,199,255,0.24); }
@@ -164,6 +164,48 @@
     .skills-board { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem; }
     .skill-block { padding: 1.25rem; border-radius: var(--radius-sm); background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); }
     .skill-block strong { display: block; margin-bottom: 0.8rem; font-size: 1rem; }
+
+    /* Bug Bounty Section */
+    .bounty-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; }
+
+    .bounty-card {
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      border-left: 3px solid var(--accent);
+    }
+
+    .bounty-card:hover { transform: translateY(-4px); border-color: rgba(99,223,188,0.4); }
+
+    .bounty-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.9rem; gap: 1rem; }
+
+    .bounty-program { font-size: 0.74rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brand-sub); }
+
+    .severity-badge {
+      padding: 0.3rem 0.7rem; border-radius: 999px; font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.14em; white-space: nowrap;
+    }
+    .sev-medium { background: rgba(251,191,36,0.12); border: 1px solid rgba(251,191,36,0.3); color: #fbbf24; }
+    .sev-low { background: rgba(99,223,188,0.1); border: 1px solid rgba(99,223,188,0.25); color: var(--accent); }
+    .sev-info { background: rgba(137,199,255,0.1); border: 1px solid rgba(137,199,255,0.25); color: var(--brand-sub); }
+
+    .finding-list { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .finding-item {
+      display: flex; align-items: flex-start; gap: 0.65rem;
+      padding: 0.6rem 0.8rem; border-radius: 12px;
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.86rem; color: var(--text-soft);
+    }
+    .finding-item::before { content: "→"; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+
+    .bounty-stats { display: flex; gap: 1rem; margin-top: 1.1rem; flex-wrap: wrap; }
+    .bounty-stat { font-size: 0.8rem; color: var(--text-dim); }
+    .bounty-stat strong { color: var(--text); }
+
+    /* Cert badges */
+    .cert-row { display: flex; gap: 0.65rem; flex-wrap: wrap; margin-top: 1.2rem; }
+    .cert-badge {
+      padding: 0.5rem 0.9rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700;
+      background: rgba(99,223,188,0.08); border: 1px solid rgba(99,223,188,0.2); color: var(--accent);
+    }
 
     .contact-links { display: grid; gap: 0.75rem; margin-top: 1.2rem; }
 
@@ -188,13 +230,13 @@
     .footer-bar strong { color: var(--text); }
 
     @media (max-width: 980px) {
-      .cards-3, .project-grid, .skills-wrap, .contact-grid, .skills-board, .hero-stats { grid-template-columns: 1fr; }
+      .cards-3, .project-grid, .skills-wrap, .contact-grid, .skills-board, .hero-stats, .bounty-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 720px) {
       .nav-inner, .footer-bar { flex-direction: column; align-items: flex-start; }
       .contact-link { flex-direction: column; align-items: flex-start; }
-      .hero-copy, .card, .project-card, .contact-card { padding: 1.35rem; border-radius: 20px; }
+      .hero-copy, .card, .project-card, .contact-card, .bounty-card { padding: 1.35rem; border-radius: 20px; }
     }
   </style>
 </head>
@@ -210,6 +252,7 @@
       </div>
       <ul>
         <li><a href="#services">Services</a></li>
+        <li><a href="#bounty">Bug Bounty</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#skills">Expertise</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -228,20 +271,24 @@
             <span class="hero-title-sub">Ground Zero Defence</span>
           </h1>
           <p class="hero-lead">
-            <strong>Cybersecurity analyst and ethical hacker</strong> delivering practical security support across web application testing, API security analysis, SIEM monitoring, phishing investigation, and structured security reporting.
+            <strong>Cybersecurity analyst and ethical hacker</strong> delivering practical security support across web application testing, API security analysis, SIEM monitoring, phishing investigation, and structured security reporting. Active bug bounty researcher on Intigriti, HackerOne, and Bugcrowd.
           </p>
           <div class="hero-stats">
             <div class="stat">
-              <strong>16+</strong>
-              <span>Vulnerabilities identified across real-world lab environments.</span>
+              <strong>32+</strong>
+              <span>Vulnerabilities identified across real-world government and commercial targets.</span>
             </div>
             <div class="stat">
-              <strong>5</strong>
-              <span>Completed security projects with full documentation.</span>
+              <strong>2</strong>
+              <span>Responsible disclosure reports submitted to national government platforms.</span>
             </div>
             <div class="stat">
               <strong>OWASP</strong>
-              <span>All findings mapped to industry-standard frameworks.</span>
+              <span>All findings mapped to OWASP Top 10 2025 and CWE industry standards.</span>
+            </div>
+            <div class="stat">
+              <strong>HOF</strong>
+              <span>Hall of Fame recognition on national cybersecurity agency bug bounty programme.</span>
             </div>
           </div>
           <div class="cta-row">
@@ -265,31 +312,31 @@
         <article class="card">
           <div class="card-tag">01 / VAPT</div>
           <h3>Web Application Security Testing</h3>
-          <p>Manual and tool-assisted vulnerability assessments aligned to OWASP Top 10. Findings delivered with CVSS ratings and prioritised remediation guidance.</p>
+          <p>Manual and tool-assisted vulnerability assessments aligned to OWASP Top 10 2025. Findings delivered with CVSS ratings and prioritised remediation guidance.</p>
         </article>
 
         <article class="card">
           <div class="card-tag">02 / API</div>
           <h3>API Security Assessment</h3>
-          <p>Review of authentication, authorisation, JWT token handling, business logic flaws, and sensitive data exposure across REST APIs.</p>
+          <p>Review of authentication, authorisation, JWT token handling, business logic flaws, and sensitive data exposure across REST APIs and server action endpoints.</p>
         </article>
 
         <article class="card">
-          <div class="card-tag">03 / SIEM</div>
+          <div class="card-tag">03 / RECON</div>
+          <h3>Passive Reconnaissance & Security Audit</h3>
+          <p>HTTP header analysis, JS source review, subdomain enumeration, technology fingerprinting, and misconfiguration identification — no exploitation required.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-tag">04 / SIEM</div>
           <h3>Threat Detection & Log Analysis</h3>
           <p>Wazuh-based monitoring, custom detection rule configuration, and event review to improve operational visibility and incident response readiness.</p>
         </article>
 
         <article class="card">
-          <div class="card-tag">04 / PHISHING</div>
+          <div class="card-tag">05 / PHISHING</div>
           <h3>Phishing Analysis & Investigation</h3>
           <p>Email header forensics, sender spoofing detection, malicious link verification, and IOC extraction with full attacker behaviour documentation.</p>
-        </article>
-
-        <article class="card">
-          <div class="card-tag">05 / ANDROID</div>
-          <h3>Android Application Security</h3>
-          <p>Static and dynamic analysis of Android APKs — suspicious permission mapping, malicious behaviour detection, and threat classification reporting.</p>
         </article>
 
         <article class="card">
@@ -300,13 +347,117 @@
       </div>
     </section>
 
+    <!-- BUG BOUNTY SECTION -->
+    <section id="bounty">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">Bug Bounty Research</div>
+          <h2>Responsible disclosure across government and commercial platforms</h2>
+        </div>
+        <p class="section-intro">Active researcher on Intigriti, HackerOne, and Bugcrowd. All findings identified through passive reconnaissance — no exploitation, no data accessed.</p>
+      </div>
+
+      <div class="bounty-grid">
+
+        <article class="bounty-card">
+          <div class="bounty-header">
+            <div>
+              <div class="bounty-program">NCSA — VDP Level 1</div>
+              <h3>Passive Security Assessment — Report SN-02</h3>
+            </div>
+            <span class="severity-badge sev-medium">8 Medium</span>
+          </div>
+          <p>Two-day passive security assessment of four NCSA web assets identifying 16 vulnerabilities. Highest-impact findings include a zero-click CSS injection class on Roundcube webmail and systemic role-based access control failures on a platform connected to the Maldives eFaas national identity system.</p>
+          <div class="finding-list">
+            <div class="finding-item">Missing CSP — Roundcube CSS injection class (CVE-2026-26079 unmitigated)</div>
+            <div class="finding-item">Broken Access Control — Admin server action fires for all authenticated roles</div>
+            <div class="finding-item">GRC AI assistant discloses internal architecture to Auditor-role users</div>
+            <div class="finding-item">Visitor IP transmitted unencrypted to third-party geolocation service</div>
+          </div>
+          <div class="bounty-stats">
+            <div class="bounty-stat"><strong>16</strong> findings</div>
+            <div class="bounty-stat"><strong>8</strong> Medium · <strong>8</strong> Low</div>
+            <div class="bounty-stat"><strong>4</strong> assets tested</div>
+            <div class="bounty-stat">Passive recon only</div>
+          </div>
+        </article>
+
+        <article class="bounty-card">
+          <div class="bounty-header">
+            <div>
+              <div class="bounty-program">NCSA — VDP Level 1</div>
+              <h3>Follow-Up Assessment — Report SN-03</h3>
+            </div>
+            <span class="severity-badge sev-medium">1 Medium</span>
+          </div>
+          <p>Follow-up assessment of learn.ncsa.gov.mv confirming a systemic NODE_ENV misconfiguration across NCSA's Next.js infrastructure. Eight SHA-1 server action IDs captured across authenticated routes — proving the deployment issue extends beyond the previously reported GRC platform.</p>
+          <div class="finding-list">
+            <div class="finding-item">SHA-1 Next-Action IDs across 8 routes — NODE_ENV not production (systemic)</div>
+            <div class="finding-item">Global leaderboard exposes Firebase UIDs and Google profile photo URLs of all users</div>
+            <div class="finding-item">Unsanitized SQL wildcard characters stored in production tournament database</div>
+            <div class="finding-item">Internal staging domain disclosed via Firebase authorizedDomains config</div>
+          </div>
+          <div class="bounty-stats">
+            <div class="bounty-stat"><strong>4</strong> findings</div>
+            <div class="bounty-stat"><strong>1</strong> Medium · <strong>3</strong> Low</div>
+            <div class="bounty-stat">Hall of Fame — Rank #8</div>
+            <div class="bounty-stat">May 2026</div>
+          </div>
+        </article>
+
+        <article class="bounty-card" style="border-left-color: var(--brand-sub);">
+          <div class="bounty-header">
+            <div>
+              <div class="bounty-program">Intigriti — Active Research</div>
+              <h3>Fintech & SaaS API Security</h3>
+            </div>
+            <span class="severity-badge sev-info">In Progress</span>
+          </div>
+          <p>Active research across Intigriti programmes targeting fintech, SaaS, and enterprise platforms. Focus on full OWASP Top 10 2025 coverage — broken access control, injection, authentication failures, and insecure design patterns across authenticated API surfaces.</p>
+          <div class="finding-list">
+            <div class="finding-item">Cross-tenant authorization bypass via server-side parameter injection</div>
+            <div class="finding-item">Hardcoded Azure Function key in public JavaScript — banking event platform</div>
+            <div class="finding-item">OAuth flow and JWT token handling analysis across multiple programmes</div>
+          </div>
+          <div class="bounty-stats">
+            <div class="bounty-stat">Intigriti — cyberlycan</div>
+            <div class="bounty-stat">HackerOne — cyberlycan10</div>
+            <div class="bounty-stat">Bugcrowd — cyberlycan10</div>
+            <div class="bounty-stat">OWASP Top 10 2025</div>
+          </div>
+        </article>
+
+        <article class="bounty-card" style="border-left-color: rgba(137,199,255,0.5);">
+          <div class="bounty-header">
+            <div>
+              <div class="bounty-program">Certifications & Recognition</div>
+              <h3>Professional Qualifications</h3>
+            </div>
+          </div>
+          <p>Industry certifications supporting practical security research and penetration testing engagements across web applications, APIs, and network infrastructure.</p>
+          <div class="cert-row">
+            <span class="cert-badge">CICSA — Certified</span>
+            <span class="cert-badge">NCSA Maldives — May 2026</span>
+            <span class="cert-badge">BSc CS — Alagappa University</span>
+            <span class="cert-badge">CEH — In Progress</span>
+            <span class="cert-badge">eJPT — In Progress</span>
+          </div>
+          <div class="bounty-stats" style="margin-top:1.1rem;">
+            <div class="bounty-stat">SAIZERO / Ground Zero Defence</div>
+            <div class="bounty-stat">India · Maldives</div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
     <section id="projects">
       <div class="section-heading">
         <div>
           <div class="section-kicker">Projects</div>
           <h2>Selected work across offensive and blue team security</h2>
         </div>
-        <p class="section-intro">All projects independently conducted under SAIZERO with full written reports and supporting evidence. Click any card to view on GitHub.</p>
+        <p class="section-intro">All projects independently conducted under SAIZERO with full written reports and supporting evidence.</p>
       </div>
 
       <div class="project-grid">
@@ -358,7 +509,7 @@
           <div class="section-kicker">Expertise</div>
           <h2>Capabilities across testing, monitoring, and reporting</h2>
         </div>
-        <p class="section-intro">Tools and skills applied across real engagements — not just listed, but demonstrated in the projects above.</p>
+        <p class="section-intro">Tools and skills applied across real engagements — not just listed, but demonstrated in the projects and bug bounty findings above.</p>
       </div>
 
       <div class="skills-wrap">
@@ -369,6 +520,7 @@
               <div class="skill-list">
                 <span>Burp Suite</span><span>OWASP ZAP</span>
                 <span>Nmap</span><span>Kali Linux</span><span>Metasploit</span>
+                <span>ffuf</span><span>Subfinder</span><span>Nuclei</span>
               </div>
             </div>
             <div class="skill-block">
@@ -382,14 +534,16 @@
               <strong>Web & API Security</strong>
               <div class="skill-list">
                 <span>REST APIs</span><span>JWT Analysis</span>
-                <span>OWASP Top 10</span><span>Postman</span><span>Docker</span>
+                <span>OWASP Top 10 2025</span><span>Postman</span>
+                <span>Next.js Security</span><span>Firebase</span>
               </div>
             </div>
             <div class="skill-block">
               <strong>Analysis & Reporting</strong>
               <div class="skill-list">
                 <span>VAPT Reports</span><span>CVSS Ratings</span>
-                <span>Risk Assessment</span><span>Technical Writing</span>
+                <span>CWE Mapping</span><span>Risk Assessment</span>
+                <span>Technical Writing</span>
               </div>
             </div>
           </div>
@@ -400,9 +554,11 @@
           <h3>Continuously learning and practising</h3>
           <p>Ongoing hands-on training and bug hunting across leading security platforms to stay sharp across both offensive and defensive disciplines.</p>
           <div class="pills" style="margin-top: 1.2rem;">
+            <span class="pill">Intigriti — cyberlycan</span>
+            <span class="pill">HackerOne — cyberlycan10</span>
+            <span class="pill">Bugcrowd — cyberlycan10</span>
             <span class="pill">TryHackMe</span>
             <span class="pill">HackTheBox</span>
-            <span class="pill">Bugcrowd</span>
             <span class="pill">LetsDefend</span>
             <span class="pill">CEH — In Progress</span>
             <span class="pill">eJPT — In Progress</span>
@@ -424,7 +580,7 @@
         <article class="contact-card">
           <div class="card-tag">Work With SAIZERO</div>
           <h3>Security testing with clear, client-ready deliverables</h3>
-          <p>Looking for web app testing, API security reviews, phishing analysis, SIEM setup, or security documentation? I deliver focused engagements with practical remediation guidance and professional reporting.</p>
+          <p>Looking for web app testing, API security reviews, phishing analysis, SIEM setup, or security documentation? I deliver focused engagements with practical remediation guidance and professional reporting — aligned to OWASP Top 10 2025 and industry standards.</p>
           <div class="cta-row" style="margin-top: 1.4rem;">
             <a href="https://www.freelancer.in/u/Satheesh055" target="_blank" rel="noreferrer" class="btn btn-primary">Hire on Freelancer</a>
             <a href="https://github.com/Satz-N-Sentry" target="_blank" rel="noreferrer" class="btn btn-secondary">View GitHub</a>
@@ -444,6 +600,15 @@
             <a href="https://tryhackme.com/p/SatzNithii" target="_blank" rel="noreferrer" class="contact-link">
               <span>TryHackMe</span><strong>SatzNithii</strong>
             </a>
+            <a href="https://app.intigriti.com/researcher/profile/cyberlycan" target="_blank" rel="noreferrer" class="contact-link">
+              <span>Intigriti</span><strong>cyberlycan</strong>
+            </a>
+            <a href="https://hackerone.com/cyberlycan10" target="_blank" rel="noreferrer" class="contact-link">
+              <span>HackerOne</span><strong>cyberlycan10</strong>
+            </a>
+            <a href="https://bugcrowd.com/cyberlycan10" target="_blank" rel="noreferrer" class="contact-link">
+              <span>Bugcrowd</span><strong>cyberlycan10</strong>
+            </a>
             <a href="https://www.freelancer.in/u/Satheesh055" target="_blank" rel="noreferrer" class="contact-link">
               <span>Freelancer</span><strong>Satheesh055</strong>
             </a>
@@ -454,8 +619,8 @@
 
     <footer>
       <div class="footer-bar">
-        <p><strong>CyberLycan</strong> operating through <strong>SAIZERO — Ground Zero Defence</strong> · Est. 2024</p>
-        <p>Cybersecurity Analyst | Web · API · SIEM · Reporting</p>
+        <p><strong>CyberLycan</strong> operating through <strong>SAIZERO — Ground Zero Defence</strong> · Est. 2026</p>
+        <p>Cybersecurity Analyst | Web · API · SIEM · Bug Bounty · Reporting</p>
       </div>
     </footer>
 
